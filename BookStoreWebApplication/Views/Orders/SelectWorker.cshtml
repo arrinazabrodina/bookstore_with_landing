@@ -1,0 +1,66 @@
+﻿@model IEnumerable<BookStoreWebApplication.Models.Worker>
+
+@{
+    ViewData["Title"] = "Вибір працівника";
+}
+
+<h1>2. Виберіть працівника</h1>
+<hr />
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.Name)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.BirthDate)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Address)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Email)
+			</th>
+			@if (@ViewBag.NeedsToShowBookstoreAddress != false)
+			{
+				<th>
+					@Html.DisplayNameFor(model => model.Bookstore)
+				</th>
+			}
+			<th>
+				Дії
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.Name)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.BirthDate)
+				</td>
+
+				<td>
+					@Html.DisplayFor(modelItem => item.Address)
+				</td>
+
+				<td>
+					@Html.DisplayFor(modelItem => item.Email)
+				</td>
+				@if (@ViewBag.NeedsToShowBookstoreAddress != false)
+				{
+					<td>
+						@Html.DisplayFor(modelItem => item.Bookstore.FullAddress)
+					</td>
+				}
+				<td>
+					<a asp-action="SelectBuyer" asp-route-id="@item.Id">Вибрати</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

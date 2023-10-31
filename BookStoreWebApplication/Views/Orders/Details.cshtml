@@ -1,0 +1,57 @@
+﻿@model BookStoreWebApplication.Models.Order
+
+@{
+    ViewData["Title"] = $"Деталі {Model.Title}";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Деталі</h1>
+
+        <div>
+            <h4>Замовлення @Html.DisplayFor(model => model.Title)</h4>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Date)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Date)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Price)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Price)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Buyer)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Buyer.Name)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Seller)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Seller.Name)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Items)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Items)
+                </dd>
+            </dl>
+        </div>
+        <div>
+            <a asp-action="Index" class="btn btn-primary">Повернутись до замовлень</a>
+        </div>
+    </div>
+</body>
+</html>

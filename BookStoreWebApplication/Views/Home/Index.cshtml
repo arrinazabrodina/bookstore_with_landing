@@ -1,0 +1,152 @@
+﻿@{
+    ViewData["Title"] = "Ласкаво просимо на наш сайт";
+}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <meta name="description" content="Сайт - книгарня. Допоможе знайти цікаві книги за жанрами та авторами, замовити та магазини книжок. BookStoreWebApplication - Zabrodina" />
+    <style>
+        .contact-bar {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            background-color: lightgray;
+            padding: 10px;
+        }
+
+        .home-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0px 0px 50px 0px;
+        }
+
+        .model-card {
+            margin: 10px 0;
+        }
+
+        .ui-helper-hidden-accessible {
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="container home-container">
+        <h1 class="text-center">Ласкаво просимо на наш сайт</h1>
+
+        <div class="contact-bar">
+            Зв'яжіться з нами: 097-777-33-22
+        </div>
+
+        <div class="model-card">
+            <div class="card">
+                <div class="card-body">
+                    <h2><a asp-action="Index" asp-controller="Authors">Автори (Authors)</a></h2>
+                    <p>Тут ви знайдете інформацію про авторів книг. Дізнайтеся більше про життя і творчість улюблених авторів.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="model-card">
+            <div class="card">
+                <div class="card-body">
+                    <h2><a asp-action="Index" asp-controller="AuthorsBooks">Автори та книги (AuthorsBooks)</a></h2>
+                    <p>Інформація про зв'язок авторів і книг. Вивчайте, які книги написані вашими улюбленими авторами.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="model-card">
+            <div class="card">
+                <div class="card-body">
+                    <h2><a asp-action="Index" asp-controller="AuthorsGenres">Автори та жанри (AuthorsGenres)</a></h2>
+                    <p>Інформація про зв'язок авторів і жанрів. Дізнайтеся, в яких жанрах працюють автори.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="model-card">
+            <div class="card">
+                <div class="card-body">
+                    <h2><a asp-action="Index" asp-controller="Availabilities">Доступність книг (Availabilities)</a></h2>
+                    <p>Тут ви дізнаєтесь, де і скільки книг доступно. Перевірте наявність ваших улюблених книг.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="model-card">
+            <div class="card">
+                <div class="card-body">
+                    <h2><a asp-action="Index" asp-controller="Books">Книги (Books)</a></h2>
+                    <p>У нас є різноманітні книги з різними жанрами. Оберіть книгу для читання сьогодні.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="model-card">
+            <div class="card">
+                <div class="card-body">
+                    <h2><a asp-action="Index" asp-controller="BooksGenres">Книги та жанри (BooksGenres)</a></h2>
+                    <p>Ця сторінка містить інформацію про жанри книг. Знайдіть книги вашого улюбленого жанру.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="model-card">
+            <div class="card">
+                <div class="card-body">
+                    <h2><a asp-action="Index" asp-controller="Bookstores">Книгарні (Bookstores)</a></h2>
+                    <p>Інформація про наші книгарні. Відвідайте найближчий магазин і виберіть книги для себе.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="model-card">
+            <div class="card">
+                <div class="card-body">
+                    <h2><a asp-action="Index" asp-controller="Buyers">Покупці (Buyers)</a></h2>
+                    <p>Тут ви дізнаєтесь про наших покупців. Дізнайтеся більше про наших вірних клієнтів.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="model-card">
+            <div class="card">
+                <div class="card-body">
+                    <h2><a asp-action="Index" asp-controller="Genres">Жанри (Genres)</a></h2>
+                    <p>Огляд доступних жанрів книг. Знайдіть книги вашого улюбленого жанру.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="model-card">
+            <div class="card">
+                <div class="card-body">
+                    <h2><a asp-action="Index" asp-controller="Orders">Замовлення (Orders)</a></h2>
+                    <p>Ви можете переглянути інформацію про замовлення. Слідкуйте за статусом свого замовлення.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="model-card">
+            <div class="card">
+                <div class="card-body">
+                    <h2><a asp-action="Index" asp-controller="OrderItems">Елементи замовлення (OrderItems)</a></h2>
+                    <p>Тут представлена інформація про товари в замовленні. Дізнайтеся, що ви купили.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="model-card">
+            <div class="card">
+                <div class="card-body">
+                    <h2><a asp-action="Index" asp-controller="Workers">Працівники (Workers)</a></h2>
+                    <p>Інформація про наших працівників та їхні книгарні. Зустріньте нашу команду.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

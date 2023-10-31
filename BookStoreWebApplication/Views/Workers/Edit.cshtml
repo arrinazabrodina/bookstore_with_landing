@@ -1,0 +1,94 @@
+﻿@model BookStoreWebApplication.Models.Worker
+
+@{
+    ViewData["Title"] = $"Редагування {Model.Name}";
+}
+
+<h1>Редагування</h1>
+
+<head>
+    <style>
+        .ui-helper-hidden-accessible {
+            visibility: hidden;
+        }
+        .ui-autocomplete {
+          max-height: 150px;
+          overflow-y: auto;
+          z-index: 1000;
+          position: absolute;
+          list-style-type: none;
+          padding: 0;
+          margin: 0;
+        }
+
+        .ui-menu-item {
+          padding: 10px;
+          border-bottom: 1px solid #ccc;
+          color: #333;
+          background-color: #f8f8f8;
+          cursor: pointer;
+        }
+
+        .ui-state-focus {
+          background-color: #007bff;
+          color: #fff;
+        }
+    </style>
+</head>
+
+<h4>@Html.DisplayFor(model => model.Name)</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BirthDate" class="control-label"></label>
+                <input asp-for="BirthDate" class="form-control" />
+                <span asp-validation-for="BirthDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BookstoreId" class="control-label"></label>
+                <input id="bookStore" name="BookstoreAddress" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Зберегти" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Назад до працівників</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        const bookStoreData = @Html.Raw(Json.Serialize(ViewData["BookstoreId"]));
+        const bookStoreNames = bookStoreData.map(item => item.address);
+
+        $(document).ready(function () {
+            $('#bookStore').autocomplete({
+                source: bookStoreNames,
+                minLength: 3
+            });
+        });
+    </script>
+}

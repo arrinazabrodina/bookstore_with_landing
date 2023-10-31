@@ -1,0 +1,86 @@
+﻿@model BookStoreWebApplication.Models.Book
+
+@{
+	ViewData["Title"] = $"Редагування {Model.Name}";
+}
+
+<h2>Редагування @Html.DisplayFor(model => model.Name)</h2>
+
+<hr />
+<div class="row">
+	<div class="col-md-4">
+		<form asp-action="Edit">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<input type="hidden" asp-for="Id" />
+			<div class="form-group">
+				<label asp-for="Name" class="control-label"></label>
+				<input asp-for="Name" class="form-control" />
+				<span asp-validation-for="Name" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="PublicationYear" class="control-label"></label>
+				<input asp-for="PublicationYear" class="form-control" />
+				<span asp-validation-for="PublicationYear" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="CoverType" class="control-label"></label>
+				<input asp-for="CoverType" class="form-control" />
+				<span asp-validation-for="CoverType" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="Price" class="control-label"></label>
+				<input asp-for="Price" class="form-control" />
+				<span asp-validation-for="Price" class="text-danger"></span>
+			</div>
+
+			<div class="form-group">
+				<label asp-for="GenreIds" class="control-label"></label>
+				<span asp-validation-for="GenreIds" class="text-danger"></span>
+				<select asp-for="GenreIds" style="width:300px;" multiple multiselect-search="true">
+					@foreach (Genre genre in ViewBag.AllGenres)
+					{
+						@if (Model.BooksGenres.Select(b => b.Genre.Id).Contains(genre.Id))
+						{
+							<option value="@genre.Id" selected>@genre.Name</option>
+						}
+						else
+						{
+							<option value="@genre.Id">@genre.Name</option>
+						}
+					}
+				</select>
+			</div>
+			<div class="form-group">
+				<label asp-for="AuthorIds" class="control-label"></label>
+				<span asp-validation-for="AuthorIds" class="text-danger"></span>
+				<select asp-for="AuthorIds" style="width:300px;" multiple multiselect-search="true">
+					@foreach (Author author in ViewBag.AllAuthors)
+					{
+						@if (Model.AuthorsBooks.Select(a => a.AuthorId).Contains(author.Id))
+						{
+							<option value="@author.Id" selected>@author.Name</option>
+						}
+						else
+						{
+							<option value="@author.Id">@author.Name</option>
+						}
+					}
+				</select>
+			</div>
+			<div class="form-group">
+				<input type="submit" value="Зберегти" class="btn btn-primary" />
+			</div>
+		</form>
+	</div>
+</div>
+
+<div>
+	<a asp-action="Index">Назад до книг</a>
+</div>
+<script src="~/js/multiselect-dropdown.js" type="text/javascript"></script>
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+}

@@ -1,0 +1,66 @@
+﻿@model IEnumerable<BookStoreWebApplication.Models.Order>
+
+@{
+    ViewData["Title"] = "Замовлення";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .contact-bar {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            background-color: lightgray;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Замовлення</h1>
+
+        @if (ViewBag.Test != null)
+        {
+            <h1>Test viewbag: @ViewBag.Test</h1>
+        }
+
+        <p>
+            <a asp-action="Create" class="btn btn-primary">Додати нове замовлення</a>
+        </p>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Date)</th>
+                    <th>@Html.DisplayNameFor(model => model.Price)</th>
+                    <th>@Html.DisplayNameFor(model => model.Buyer.Name)</th>
+                    <th>@Html.DisplayNameFor(model => model.Seller.Name)</th>
+                    <th>@Html.DisplayNameFor(model => model.Items)</th>
+                    <th>Дії</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Date)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Buyer.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Seller.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Items)</td>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">Деталі</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Видалити</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="contact-bar">
+        Contact me! 097-777-33-22
+    </div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+﻿@model BookStoreWebApplication.Models.Genre
+
+@{
+    ViewData["Title"] = "Видалити жанр";
+}
+
+<h1>Видалити</h1>
+
+<h3>Ви впевненні, що хочете видалити жанр @Html.DisplayFor(model => model.Name)?</h3>
+<div>
+    <h4>Жанр</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Видалити" class="btn btn-danger" /> |
+        <a asp-action="Index">Повернутись до жанрів</a>
+    </form>
+</div>

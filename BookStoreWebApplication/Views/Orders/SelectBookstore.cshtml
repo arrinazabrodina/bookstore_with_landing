@@ -1,0 +1,40 @@
+﻿@model IEnumerable<BookStoreWebApplication.Models.Bookstore>
+
+@{
+	ViewData["Title"] = "Вибір магазин";
+}
+
+<h1>1. Виберіть магазин</h1>
+<hr />
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.City)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Address)
+			</th>
+			<th>
+				Дії
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.City)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Address)
+				</td>
+				<td>
+					<a asp-action="SelectWorker" asp-route-id="@item.Id">Вибрати</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>

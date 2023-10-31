@@ -1,0 +1,60 @@
+﻿@model IEnumerable<BookStoreWebApplication.Models.Buyer>
+
+@{
+    ViewData["Title"] = "Виберіть покупця";
+}
+
+<h1>3. Виберіть покупця</h1>
+
+<p>
+    <a asp-action="CreateBuyer" asp-route-worker="@ViewBag.WorkerId">Додати нового покупця</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BirthDate)
+            </th>
+            <th>
+                Дії
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BirthDate)
+                </td>
+                <td>
+                    <a asp-action="SelectBooks" asp-route-buyerId="@item.Id" asp-route-workerId="@ViewBag.WorkerId">Вибрати</a>
+                </td>
+            </tr>
+        }
+    </tbody> 
+</table>

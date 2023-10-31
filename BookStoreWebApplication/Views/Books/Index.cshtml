@@ -1,0 +1,62 @@
+﻿@model IEnumerable<BookStoreWebApplication.Models.Book>
+@{
+    ViewData["Title"] = "Книги";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .contact-bar {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            background-color: lightgray;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Книги</h1>
+        <p>
+            <a asp-action="Create" class="btn btn-primary">Додати нову книгу</a>
+        </p>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Name)</th>
+                    <th>@Html.DisplayNameFor(model => model.PublicationYear)</th>
+                    <th>@Html.DisplayNameFor(model => model.CoverType)</th>
+                    <th>@Html.DisplayNameFor(model => model.Price)</th>
+                    <th>@Html.DisplayNameFor(m => m.Genres)</th>
+                    <th>@Html.DisplayNameFor(m => m.Authors)</th>
+                    <th>Дії</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => item.PublicationYear)</td>
+                        <td>@Html.DisplayFor(modelItem => item.CoverType)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Genres)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Authors)</td>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">Деталі</a>
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Редагувати</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Видалити</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="contact-bar">
+        Contact me! 097-777-33-22
+    </div>
+</body>
+</html>

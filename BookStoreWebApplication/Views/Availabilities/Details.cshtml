@@ -1,0 +1,46 @@
+﻿@model BookStoreWebApplication.Models.Availability
+
+@{
+    ViewData["Title"] = "Деталі доступності";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Деталі</h1>
+
+        <div>
+            <h4>@Html.DisplayFor(m => m.Book.Name) за адресою @Html.DisplayFor(m => m.Bookstore.FullAddress)</h4>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Book)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Book.FullInfo)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Count)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Count)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Bookstore)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Bookstore.FullAddress)
+                </dd>
+            </dl>
+        </div>
+        <div>
+            <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning">Редагувати</a> |
+            <a asp-action="Index" class="btn btn-primary">Назад до доступностей</a>
+        </div>
+    </div>
+</body>
+</html>

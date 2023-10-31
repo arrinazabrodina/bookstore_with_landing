@@ -1,0 +1,62 @@
+﻿@model BookStoreWebApplication.Models.Order
+
+@{
+    ViewData["Title"] = "Додати замовлення";
+}
+
+<h2>Додати замовлення</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="BuyerId" class="control-label"></label>
+                <select asp-for="BuyerId" class ="form-control" asp-items="ViewBag.BuyerId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SellerId" class="control-label"></label>
+                <select asp-for="SellerId" class ="form-control" asp-items="ViewBag.SellerId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group" id="books_div">
+                @*@foreach (Book book in Model)
+                {
+                    <option value="@genre.Id">@genre.Name</option>
+                }*@
+                <input type="button" id="myButton" value="test" onclick="test()" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Створити" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Назад до замовлень</a>
+</div>
+
+<script>
+    function test() {
+        var booksDiv = document.getElementById("books_div");
+        booksDiv.innerHTML += "<p>Test</p>"
+        //var p = document.createElement("p");
+        //p.innerHTML = "I am new text";
+        //booksDiv.append(p);
+        //alert("button clicked.");
+    }
+</script>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

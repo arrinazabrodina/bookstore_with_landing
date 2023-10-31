@@ -1,0 +1,39 @@
+﻿@model BookStoreWebApplication.Models.Availability
+
+@{
+    ViewData["Title"] = "Видалити доступність";
+}
+
+<h1>Видалити</h1>
+
+<h3>Ви впевненні, що хочете видалити доступність книги @Html.DisplayFor(model => model.Book.Name) в магазині @Html.DisplayFor(m => m.Bookstore.FullAddress)?</h3>
+<div>
+    <h4>Доступність</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Count)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Count)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Book)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Book.CoverType)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Bookstore)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Bookstore.Id)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Видалити" class="btn btn-danger" /> |
+        <a asp-action="Index">Повернутись до доступностей</a>
+    </form>
+</div>

@@ -1,0 +1,76 @@
+﻿@model IEnumerable<BookStoreWebApplication.Models.Genre>
+
+@{
+    ViewData["Title"] = "Жанри";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .contact-bar {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            background-color: lightgray;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Жанри</h1>
+        <p>
+            <a asp-action="Create" class="btn btn-primary">Додати новий жанр</a>
+        </p>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Name)</th>
+                    <th>Дії</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info">Деталі</a>
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Редагувати</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Видалити</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="container">
+        <div id="chart"></div>
+    </div>
+    <div class="contact-bar">
+        Contact me! 097-777-33-22
+    </div>
+</body>
+</html>
+
+@section scripts{
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+            $.get('/api/Chart/GenresToBooks', function (JsonData) {
+                data = google.visualization.arrayToDataTable(JsonData, false);
+                var option = {
+                    title: "Співвідношення магазинів та кількості продажей",
+                    width: 500,
+                    height: 400
+                };
+                chart = new google.visualization.BarChart(document.getElementById('chart'));
+                chart.draw(data, option);
+            })
+        }
+    </script>
+}
